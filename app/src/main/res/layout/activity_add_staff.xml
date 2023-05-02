@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".AddStaffActivity"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Staff Account"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            android:elevation="10dp"
+            app:cardUseCompatPadding="true">
+
+            <EditText
+                android:id="@+id/etStaff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="Staff Name"
+                android:padding="20dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            android:elevation="10dp"
+            app:cardUseCompatPadding="true">
+
+            <EditText
+                android:id="@+id/etStaffEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:background="@null"
+                android:padding="20dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            android:elevation="10dp"
+            app:cardUseCompatPadding="true">
+
+            <EditText
+                android:id="@+id/etStaffPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:padding="20dp"
+                android:background="@null"/>
+
+        </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btnAddStaff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Staff"
+        android:background="@null"
+        android:backgroundTint="@color/blue"
+        android:layout_margin="3dp"/>
+
+</LinearLayout>

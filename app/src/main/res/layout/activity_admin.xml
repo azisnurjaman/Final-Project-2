@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:padding="15dp"
+    tools:context=".AdminActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="176dp"
+        android:layout_marginTop="35dp"
+        android:src="@drawable/staff" />
+
+    <Button
+        android:id="@+id/btnStaff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:text="Add Staff"
+        android:backgroundTint="@color/blue"/>
+
+    <ImageView
+        android:layout_width="397dp"
+        android:layout_height="175dp"
+        android:src="@drawable/stock" />
+
+    <Button
+        android:id="@+id/btnStock"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:text="Add Stock"
+        android:backgroundTint="@color/blue"/>
+
+</LinearLayout>
