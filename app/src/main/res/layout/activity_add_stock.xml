@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".AddStaffActivity"
+    tools:context=".AddStaffActivity2"
     android:gravity="center">
 
     <androidx.cardview.widget.CardView
