@@ -13,12 +13,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText etUsername, etPassword;
-
-    private Button btn;
-
-    private List<String> ListData = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
