@@ -4,10 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
+    android:gravity="center"
     android:background="@color/white"
     android:orientation="vertical"
+    android:padding="15dp"
     tools:context=".StartActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/logo"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Best Brand Bandung"
+        android:textColor="@color/black"
+        android:textSize="60sp"
+        android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -20,8 +41,10 @@
         <Button
             android:id="@+id/btnUserRegister"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="15sp"
             android:text="New User? Register Here"
+            android:fontFamily="sans-serif-black"
             android:backgroundTint="@color/blue"/>
 
     </androidx.cardview.widget.CardView>
@@ -38,8 +61,10 @@
         <Button
             android:id="@+id/btnUserLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="15sp"
             android:text="Already a User? Login Here"
+            android:fontFamily="sans-serif-black"
             android:backgroundTint="@color/blue" />
 
     </androidx.cardview.widget.CardView>

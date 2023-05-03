@@ -41,7 +41,7 @@ public class UserLoginActivity extends AppCompatActivity {
         password = etPassword.getText().toString();
 
         if (username.isEmpty() || password.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Please fill Username and Password blank field", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Please fill Email and Password", Toast.LENGTH_LONG).show();
         }
 
     }
