@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".AddStaffActivity2"
+    tools:context=".AddStaffActivity"
     android:gravity="center">
 
     <TextView
