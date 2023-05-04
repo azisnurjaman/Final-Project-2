@@ -3,6 +3,7 @@ package com.example.e_commerce;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,14 +20,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AddStaffActivity extends AppCompatActivity {
 
-    EditText inputStaffName, inputStaffEmail, inputStaffPassword;
+    public EditText inputStaffName, inputStaffEmail, inputStaffPassword;
 
-    Button btnAddStaff;
+    private Button btnAddStaff;
 
     FirebaseAuth auth;
 
@@ -78,7 +80,9 @@ public class AddStaffActivity extends AppCompatActivity {
                                 firebaseUser.updateProfile(request).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-
+                                        Toast.makeText(getApplicationContext(), "Staff added succesfully", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(AddStaffActivity.this, AdminActivity.class);
+                                        startActivity(intent);
                                     }
                                 });
                             } else {
@@ -90,22 +94,4 @@ public class AddStaffActivity extends AppCompatActivity {
                     }
                 });
         }
-
-        private void addStaffData(Map<String, Object> staffData) {
-            db.collection("Staff")
-                    .document(auth.getUid())
-                    .set(staffData)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-    }
 }

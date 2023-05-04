@@ -19,7 +19,6 @@
             android:id="@+id/txtInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsbold"
             android:text="Kategori: "
             android:textColor="#EC994B"
             android:textSize="22sp" />
@@ -28,9 +27,6 @@
             android:id="@+id/buttonFilter"
             android:layout_width="wrap_content"
             android:layout_height="33dp"
-            android:background="@drawable/btn_background"
-            android:drawableLeft="@drawable/ic_baseline_filter_none_24"
-            android:fontFamily="@font/poppinsregular"
             android:paddingHorizontal="10dp"
             android:text="Filter"
             android:textAllCaps="false"

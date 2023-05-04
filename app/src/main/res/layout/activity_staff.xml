@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="15dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".StaffActivity">
+
+    <TextView
+        android:id="@+id/tvStaffDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Staff Dashboard" />
+
+    <TextView
+        android:id="@+id/tvStaffActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="240dp"
+        android:layout_height="230dp"
+        android:src="@drawable/staff_activity" />
+
+    <TextView
+        android:id="@+id/tvStaffName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:padding="16dp"
+        android:gravity="center"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/tvStaffEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:padding="16dp"
+        android:gravity="center"
+        android:text="Email" />
+
+    <Button
+        android:id="@+id/btnStaffLogout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:text="Logout"
+        android:backgroundTint="@color/blue"/>
+
+</LinearLayout>

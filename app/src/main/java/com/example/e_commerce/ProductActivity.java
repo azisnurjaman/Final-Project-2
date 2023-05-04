@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,9 +20,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.project_ecommerce.adapter.CategoryAdapter;
-import com.example.project_ecommerce.adapter.ItemAdapter;
-import com.example.project_ecommerce.model.Item;
+// Error
+// import com.example.project_ecommerce.adapter.CategoryAdapter;
+// import com.example.project_ecommerce.adapter.ItemAdapter;
+// import com.example.project_ecommerce.model.Item;
+
+import com.example.e_commerce.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,9 +38,10 @@ import java.util.Locale;
 
 public class ProductActivity extends AppCompatActivity {
     FirebaseFirestore db;
-    List<Item> list = new ArrayList<>();
+
+    List<ClipData.Item> list = new ArrayList<>();
     private ProgressDialog progressDialog;
-    ItemAdapter itemAdapter;
+    //ItemAdapter itemAdapter;
     private TextView txtInfo;
     private RecyclerView recyclerView;
     AlertDialog alertDialog1;
@@ -82,11 +87,11 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
 
-        itemAdapter = new ItemAdapter(this, list);
+        //itemAdapter = new ItemAdapter(this, list);
 
         GridLayoutManager layoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(itemAdapter);
+        //recyclerView.setAdapter(itemAdapter);
         txtInfo.append(getCategory);
 
     }
@@ -109,14 +114,14 @@ public class ProductActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         list.removeAll(list);
-                        itemAdapter.notifyDataSetChanged();
+                        //itemAdapter.notifyDataSetChanged();
                         if (task.isSuccessful()){
                             for (QueryDocumentSnapshot document : task.getResult()){
-                                Item item = new Item(document.getString("id"), document.getString("name"), document.getString("quantity"), document.getString("picture"), document.getString("category"), document.getString("filter"), document.getString("price"), document.getString("description"));
-                                item.setDocId(document.getId());
-                                list.add(item);
+                                //Item item = new Item(document.getString("id"), document.getString("name"), document.getString("quantity"), document.getString("picture"), document.getString("category"), document.getString("filter"), document.getString("price"), document.getString("description"));
+                                //item.setDocId(document.getId());
+                                //list.add(item);
                                 Log.i("123",document.getString("filter"));
-                                itemAdapter.notifyDataSetChanged();
+                                //itemAdapter.notifyDataSetChanged();
                             }
                         }else{
                             Toast.makeText(getApplicationContext(), "Data gagal di ambil!", Toast.LENGTH_SHORT).show();
