@@ -84,7 +84,8 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                 if (task.isSuccessful()){
                     User user = new User(tUserName, tEmail, tPass);
 
-                    FirebaseDatabase.getInstance().getReference("users")
+                    FirebaseDatabase.getInstance("https://final-project-44dce-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                            .getReference("users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

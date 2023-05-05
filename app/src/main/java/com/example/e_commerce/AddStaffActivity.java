@@ -94,7 +94,8 @@ public class AddStaffActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     Staff staff = new Staff(staffName, staffEmail, staffPassword);
 
-                    FirebaseDatabase.getInstance().getReference("staffs")
+                    FirebaseDatabase.getInstance("https://final-project-44dce-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                            .getReference("staffs")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(staff).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -102,7 +103,7 @@ public class AddStaffActivity extends AppCompatActivity {
                                     if (task.isSuccessful()){
                                         progress.setVisibility(View.GONE);
                                         onBackPressed();
-                                        Toast.makeText(AddStaffActivity.this, "User has been registered successfully!",
+                                        Toast.makeText(AddStaffActivity.this, "Staff has been registered successfully!",
                                                 Toast.LENGTH_LONG).show();
                                     } else {
                                         progress.setVisibility(View.GONE);
