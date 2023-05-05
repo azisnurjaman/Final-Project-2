@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:padding="10dp"
+    android:background="@color/white"
     tools:context=".ProductActivity">
 
     <LinearLayout
@@ -13,24 +13,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
         <TextView
             android:id="@+id/txtInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsbold"
             android:text="Kategori: "
-            android:textColor="#EC994B"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:textColor="#FF000000"/>
 
         <Button
             android:id="@+id/buttonFilter"
-            android:layout_width="wrap_content"
-            android:layout_height="33dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/btn_background"
             android:drawableLeft="@drawable/ic_baseline_filter_none_24"
-            android:fontFamily="@font/poppinsregular"
             android:paddingHorizontal="10dp"
             android:text="Filter"
             android:textAllCaps="false"
@@ -43,7 +42,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:gravity="center">
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearCategory">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProduct"
@@ -52,4 +55,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
