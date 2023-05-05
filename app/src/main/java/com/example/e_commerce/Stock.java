@@ -1,28 +1,33 @@
 package com.example.e_commerce;
 
-public class Stock {
-    private String idItem;
+import java.io.Serializable;
 
-    private String quantity;
+public class Stock implements Serializable {
+    private String id;
+    private int quantity;
 
-    public String getIdItem() {
-        return idItem;
-    }
-
-    public void setIdItem(String idItem) {
-        this.idItem = idItem;
-    }
-
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Stock(String idItem, String quantity) {
-        this.idItem = idItem;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Stock(){
+
+    }
+
+    public Stock(String id, int quantity){
+        this.id = id;
         this.quantity = quantity;
     }
 }

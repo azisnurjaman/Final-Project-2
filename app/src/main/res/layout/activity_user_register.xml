@@ -18,12 +18,14 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/logo" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User Registration"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
 
             <ProgressBar
                 android:id="@+id/progress"
@@ -39,7 +41,7 @@
                 android:layout_marginBottom="10dp"
                 android:drawableStart="@drawable/ic_baseline_person_24"
                 android:gravity="center"
-                android:hint="User Name"
+                android:hint="Name"
                 android:inputType="textPersonName"
                 android:padding="20dp" />
 
@@ -50,7 +52,7 @@
                 android:layout_marginBottom="10dp"
                 android:drawableStart="@drawable/ic_baseline_email_24"
                 android:gravity="center"
-                android:hint="Enter Email"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:padding="20dp" />
 
@@ -61,7 +63,7 @@
                 android:layout_marginBottom="10dp"
                 android:drawableStart="@drawable/ic_baseline_vpn_key_24"
                 android:gravity="center"
-                android:hint="Enter Password"
+                android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="20dp" />
 
