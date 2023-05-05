@@ -58,7 +58,7 @@ public class StaffLoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful() && task.getResult() != null) {
-                            Intent intent = new Intent(StaffLoginActivity.this, StaffFragment.class);
+                            Intent intent = new Intent(StaffLoginActivity.this, StaffActivity.class);
                             startActivity(intent);
                             if (task.getResult().getUser() != null) {
                             } else {

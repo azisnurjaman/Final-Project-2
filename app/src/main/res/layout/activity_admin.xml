@@ -9,6 +9,13 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/btnAdminLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Logout" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="176dp"
@@ -35,5 +42,7 @@
         android:layout_margin="20dp"
         android:text="Add Stock"
         android:backgroundTint="@color/blue"/>
+
+
 
 </LinearLayout>

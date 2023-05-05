@@ -11,9 +11,11 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,13 +32,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminLoginActivity extends AppCompatActivity {
-
-    private TextView tvAdminLogin;
-
     private EditText etAdminEmail, etAdminPassword;
-
     private Button btnAdminLogin;
-
+    private ProgressBar progress;
     private FirebaseAuth auth;
 
     @Override
@@ -46,10 +44,11 @@ public class AdminLoginActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        tvAdminLogin = findViewById(R.id.tvAdminLogin);
         etAdminEmail = findViewById(R.id.etAdminEmail);
         etAdminPassword = findViewById(R.id.etAdminPassword);
         btnAdminLogin = findViewById(R.id.btnAdminLogin);
+
+        progress = (ProgressBar) findViewById(R.id.progress);
 
         btnAdminLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,25 +59,40 @@ public class AdminLoginActivity extends AppCompatActivity {
     }
 
     private void adminLogin() {
-        String adminEmail, adminPassword;
-        adminEmail = etAdminEmail.getText().toString();
-        adminPassword = etAdminPassword.getText().toString();
-        auth.signInWithEmailAndPassword(adminEmail, adminPassword)
-                .addOnCompleteListener(
-                        new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful() && task.getResult() != null) {
-                                    Intent intent = new Intent(AdminLoginActivity.this, AdminActivity.class);
-                                    startActivity(intent);
-                                    if (task.getResult().getUser() != null) {
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Incorrect Email or Password" , Toast.LENGTH_LONG).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Incorrect Email or Password", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
+        String email = etAdminEmail.getText().toString().trim();
+        String pass = etAdminPassword.getText().toString().trim();
+
+        if (email.isEmpty()){
+            etAdminEmail.setError("Email is required!");
+            etAdminEmail.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            etAdminEmail.setError("Invalid email!");
+            etAdminEmail.requestFocus();
+            return;
+        }
+        if (pass.isEmpty()){
+            etAdminPassword.setError("Password is required!");
+            etAdminPassword.requestFocus();
+            return;
+        }
+
+        progress.setVisibility(View.VISIBLE);
+        auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    progress.setVisibility(View.GONE);
+                    startActivity(new Intent(AdminLoginActivity.this, AdminActivity.class));
+                    Toast.makeText(AdminLoginActivity.this, "Login successfully!",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    progress.setVisibility(View.GONE);
+                    Toast.makeText(AdminLoginActivity.this, "Login Failed, please check your credentials and try again!",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 }

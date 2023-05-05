@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1038049518243",
+    "firebase_url": "https://final-project-44dce-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "final-project-44dce",
     "storage_bucket": "final-project-44dce.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1038049518243-uk1fbs1in8bau7nbvhrqdkf2r6cft1g2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_commerce",
+            "certificate_hash": "2a5a3fd665adce31d968d3d6a0f8af6d7442474f"
+          }
+        },
         {
           "client_id": "1038049518243-rbr77ih1c82btm5bspb13p7hj6dcv64a.apps.googleusercontent.com",
           "client_type": 3

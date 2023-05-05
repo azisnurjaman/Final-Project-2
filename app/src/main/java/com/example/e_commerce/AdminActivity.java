@@ -6,9 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class AdminActivity extends AppCompatActivity {
 
-    Button btnAddStaff, btnAddStock;
+    Button btnAddStaff, btnAddStock, btnAdminLogout;
+
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +20,9 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         btnAddStaff = findViewById(R.id.btnStaff);
         btnAddStock = findViewById(R.id.btnStock);
+        btnAdminLogout = findViewById(R.id.btnAdminLogout);
+
+        auth = FirebaseAuth.getInstance();
 
         btnAddStaff.setOnClickListener(view -> {
             Intent intent = new Intent(AdminActivity.this, AddStaffActivity.class);
@@ -23,6 +30,13 @@ public class AdminActivity extends AppCompatActivity {
         });
         btnAddStock.setOnClickListener(view -> {
             Intent intent = new Intent(AdminActivity.this, AddStockActivity.class);
+            startActivity(intent);
+        });
+
+        btnAdminLogout.setOnClickListener(view -> {
+            auth.signOut();
+            finish();
+            Intent intent = new Intent(AdminActivity.this, StartActivity.class);
             startActivity(intent);
         });
     }

@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ECommerce"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.ECommerce">
+        <activity
+            android:name=".StaffActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AddStockActivity"
+            android:exported="true" />
         <activity
             android:name=".AboutActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".UserRegisterActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".StaffLoginActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".AdminLoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_admin_login"
-            android:theme="@style/Theme.ECommerce.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".UserLoginActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".AddStaffActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".AdminActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".StartActivity"
             android:exported="true">
