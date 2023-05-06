@@ -6,7 +6,6 @@ public class Staff {
     public Staff(){
 
     }
-
     public Staff(String userName, String email, String pass){
         this.userName = userName;
         this.email = email;
