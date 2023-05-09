@@ -2,16 +2,16 @@ package com.example.e_commerce;
 
 import java.io.Serializable;
 
-public class Stock implements Serializable {
-    private String id;
-    private int quantity;
+public class Stock {
+    private String id, quantity, name, description, category, picture, brand;
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
+    public Stock(String id, String quantity, String category, String name, String description, String picture){
+        this.id = id;
         this.quantity = quantity;
+        this.category = category;
+        this.name = name;
+        this.description = description;
+        this.picture = picture;
     }
 
     public String getId() {
@@ -22,12 +22,51 @@ public class Stock implements Serializable {
         this.id = id;
     }
 
-    public Stock(){
-
+    public String getQuantity() {
+        return quantity;
     }
 
-    public Stock(String id, int quantity){
-        this.id = id;
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

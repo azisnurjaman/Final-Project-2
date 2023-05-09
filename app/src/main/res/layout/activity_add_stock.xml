@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:textColor="@color/black"
             android:hint="ID Item"
             android:padding="20dp" />
 
@@ -52,7 +53,83 @@
             android:layout_height="wrap_content"
             android:hint="Quantity"
             android:padding="20dp"
+            android:textColor="@color/black"
             android:background="@null"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        android:elevation="10dp"
+        app:cardUseCompatPadding="true">
+
+        <Spinner
+            android:id="@+id/dropdownCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:entries="@array/category"
+            android:spinnerMode="dropdown" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        android:elevation="10dp"
+        app:cardUseCompatPadding="true">
+
+        <EditText
+            android:id="@+id/etProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="Product Name"
+            android:padding="20dp"
+            android:textColor="@color/black" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        android:elevation="10dp"
+        app:cardUseCompatPadding="true">
+
+        <EditText
+            android:id="@+id/etProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="Product Description"
+            android:padding="20dp"
+            android:textColor="@color/black" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        android:elevation="10dp"
+        app:cardUseCompatPadding="true">
+
+        <EditText
+            android:id="@+id/etProductPicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="Product Picture Link"
+            android:padding="20dp"
+            android:textColor="@color/black" />
 
     </androidx.cardview.widget.CardView>
 
@@ -64,5 +141,6 @@
         android:background="@null"
         android:backgroundTint="@color/blue"
         android:layout_margin="3dp"/>
+
 
 </LinearLayout>
