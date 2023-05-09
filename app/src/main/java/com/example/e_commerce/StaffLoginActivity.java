@@ -60,12 +60,10 @@ public class StaffLoginActivity extends AppCompatActivity {
                         if (task.isSuccessful() && task.getResult() != null) {
                             Intent intent = new Intent(StaffLoginActivity.this, StaffActivity.class);
                             startActivity(intent);
-                            if (task.getResult().getUser() != null) {
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Incorrect Email or Password" , Toast.LENGTH_LONG).show();
-                            }
+                            Toast.makeText(StaffLoginActivity.this, "Login successfully!", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "Incorrect Email or Password", Toast.LENGTH_LONG).show();
+                            Toast.makeText(StaffLoginActivity.this, "Login Failed, please check your credentials and try again!",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -38,6 +39,7 @@ public class AdminActivity extends AppCompatActivity {
             finish();
             Intent intent = new Intent(AdminActivity.this, StartActivity.class);
             startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Logout Successfully!", Toast.LENGTH_LONG).show();
         });
     }
 }
