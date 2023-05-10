@@ -23,6 +23,9 @@
             android:name=".StaffLoginActivity"
             android:exported="true" />
         <activity
+            android:name=".UserActivity"
+            android:exported="true" />
+        <activity
             android:name=".AdminLoginActivity"
             android:exported="true" />
         <activity

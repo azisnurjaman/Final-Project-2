@@ -29,6 +29,7 @@ public class AdminActivity extends AppCompatActivity {
             Intent intent = new Intent(AdminActivity.this, AddStaffActivity.class);
             startActivity(intent);
         });
+
         btnAddStock.setOnClickListener(view -> {
             Intent intent = new Intent(AdminActivity.this, AddStockActivity.class);
             startActivity(intent);

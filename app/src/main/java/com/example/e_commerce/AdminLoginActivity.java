@@ -37,7 +37,6 @@ public class AdminLoginActivity extends AppCompatActivity {
     private Button btnAdminLogin;
     private ProgressBar progress;
     private FirebaseAuth auth;
-
     private DatabaseReference db;
 
     @Override
@@ -51,7 +50,7 @@ public class AdminLoginActivity extends AppCompatActivity {
         etAdminPassword = findViewById(R.id.etAdminPassword);
         btnAdminLogin = findViewById(R.id.btnAdminLogin);
 
-        progress = (ProgressBar) findViewById(R.id.progress);
+        progress = findViewById(R.id.progress);
 
         btnAdminLogin.setOnClickListener(new View.OnClickListener() {
             @Override
