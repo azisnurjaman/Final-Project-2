@@ -14,8 +14,8 @@
 
     <string-array name="category">
         <item>Fashion</item>
-        <item>Electronics</item>
-        <item>Books</item>
+        <item>Electronic</item>
+        <item>Book</item>
         <item>Others</item>
     </string-array>
     

@@ -89,7 +89,8 @@
             android:hint="Quantity"
             android:padding="20dp"
             android:textColor="@color/black"
-            android:background="@null"/>
+            android:background="@null"
+            android:inputType="number"/>
 
     </androidx.cardview.widget.CardView>
 

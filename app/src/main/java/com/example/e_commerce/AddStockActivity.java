@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -40,7 +41,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class AddStockActivity extends AppCompatActivity {
-    private EditText etQuantity, etProductName, etProductDescription, etProductPicture;
+    private EditText etQuantity, etProductName, etProductDescription;
     private ImageView img;
     private Button btnAddStock;
     private Spinner dropdownCategory;
@@ -62,7 +63,7 @@ public class AddStockActivity extends AppCompatActivity {
         btnAddStock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                upload();
+                addStock();
             }
         });
 
@@ -130,8 +131,8 @@ public class AddStockActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] data = baos.toByteArray();
 
-        FirebaseStorage storage = FirebaseStorage.getInstance("gs://final-project-44dce.appspot.com");
-        StorageReference storageRef = storage.getReference("images").child(new Date().getTime()+".png");
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference("images").child("IMG"+new Date().getTime()+".png");
 
         UploadTask uploadTask = storageRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -147,9 +148,7 @@ public class AddStockActivity extends AppCompatActivity {
                         taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                             @Override
                             public void onComplete(@NonNull Task<Uri> task) {
-                                if (task.getResult() != null) {
-                                    addStock();
-                                } else {
+                                if (task.getResult() == null) {
                                     Toast.makeText(AddStockActivity.this, "Error! Something went wrong.", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -167,42 +166,42 @@ public class AddStockActivity extends AppCompatActivity {
     private void addStock() {
         id = FirebaseStockUtils.getRefrence(FirebaseStockUtils.ITEMS_PATH).push().getKey();
         String quantity = etQuantity.getText().toString();
-        String category = dropdownCategory.getSelectedItem().toString().toLowerCase(Locale.ROOT);
+        String category = dropdownCategory.getSelectedItem().toString();
         String productName = etProductName.getText().toString();
-        String image = img.getImageMatrix().toString();
+        String image = img.getDrawable().toString();
 
+        if (image.equals(R.drawable.ic_baseline_image_search_24)) {
+            Toast.makeText(AddStockActivity.this, "Product image is required!", Toast.LENGTH_SHORT).show();
+            img.requestFocus();
+            return;
+        }
+        if (productName.isEmpty()) {
+            etProductName.setError("Product name is required!");
+            etProductName.requestFocus();
+            return;
+        }
         if (quantity.isEmpty()) {
             etQuantity.setError("Quantity is required!");
             etQuantity.requestFocus();
             return;
         }
-        if (productName.isEmpty()) {
-            etProductName.setError("Product Name is required!");
-            etProductName.requestFocus();
-            return;
-        }
-        if (image.isEmpty()) {
-            etProductPicture.setError("Product Picture Link is required!");
-            etProductPicture.requestFocus();
-            return;
-        }
 
         Stock stock = new Stock (id, quantity, category, productName, image);
-        db.getInstance("https://final-project-44dce-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                .getReference("products")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(stock).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(AddStockActivity.this, "Product has been successfully added!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AddStockActivity.this, AdminActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddStockActivity.this, "Product failed to add!", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        FirebaseStockUtils.getRefrence(FirebaseStockUtils.ITEMS_PATH).child(id)
+                .setValue(stock).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                upload();
+                Toast.makeText(AddStockActivity.this, "Product has been successfully added!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AddStockActivity.this, AdminActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(AddStockActivity.this, "Product failed to add!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
