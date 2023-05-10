@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class UserRegisterActivity extends AppCompatActivity implements View.OnClickListener {
-    private EditText userName, email, pass;
+    private EditText userName, email, pass, confirmPass;
     private Button submit;
     private FirebaseAuth Auth;
     private ProgressBar progress;
@@ -30,6 +30,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
         userName = (EditText) findViewById(R.id.txtUserName);
         email = (EditText) findViewById(R.id.txtEmail);
         pass = (EditText) findViewById(R.id.txtPass);
+        confirmPass = (EditText) findViewById(R.id.txtConfirmPass);
 
         submit = (Button) findViewById(R.id.btnSubmitRegister);
         submit.setOnClickListener(this);
@@ -50,6 +51,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
         String tUserName = userName.getText().toString().trim();
         String tEmail = email.getText().toString().trim();
         String tPass = pass.getText().toString().trim();
+        String tConfirmPass = confirmPass.getText().toString().trim();
 
         if (tUserName.isEmpty()){
             userName.setError("User Name is required!");
@@ -74,6 +76,13 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
         if (tPass.length() <= 5){
             pass.setError("Min password length should be more then 5 characters!");
             pass.requestFocus();
+            return;
+        }
+
+        else if (tConfirmPass.equals(tPass)){
+            confirmPass.requestFocus();
+        } else {
+            confirmPass.setError("Please check your password again!");
             return;
         }
 

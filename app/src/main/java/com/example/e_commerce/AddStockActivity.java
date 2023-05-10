@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,16 +32,14 @@ public class AddStockActivity extends AppCompatActivity {
 
     private Spinner dropdownCategory;
 
-    private List<String> list = new ArrayList<>();
-
-    private DatabaseReference db;
+    private FirebaseDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_stock);
 
-        db = FirebaseDatabase.getInstance().getReference("stocks");
+        db = FirebaseDatabase.getInstance();
 
         etIdItem = (EditText) findViewById(R.id.etIdItem);
         etQuantity = (EditText) findViewById(R.id.etQuantity);
@@ -94,21 +94,22 @@ public class AddStockActivity extends AppCompatActivity {
             return;
         }
 
-        db.child("Stocks").push().setValue(new Stock(idItem, quantity, category, productName, productDescription, productPicture)).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void v) {
-                Toast.makeText(AddStockActivity.this, "Stock has been successfully added", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(AddStockActivity.this, AdminActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AddStockActivity.this, "The stock has not been successfully added", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
+        Stock stock = new Stock (idItem, quantity, category, productName, productDescription, productPicture);
+        db.getInstance("https://final-project-44dce-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("stocks")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(stock).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(AddStockActivity.this, "Stock has been successfully added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AddStockActivity.this, AdminActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddStockActivity.this, "The stock has not been successfully added", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

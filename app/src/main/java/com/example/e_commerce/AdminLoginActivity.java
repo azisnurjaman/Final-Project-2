@@ -27,6 +27,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.e_commerce.databinding.ActivityAdminLoginBinding;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,8 @@ public class AdminLoginActivity extends AppCompatActivity {
     private Button btnAdminLogin;
     private ProgressBar progress;
     private FirebaseAuth auth;
+
+    private DatabaseReference db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +65,17 @@ public class AdminLoginActivity extends AppCompatActivity {
         String email = etAdminEmail.getText().toString().trim();
         String pass = etAdminPassword.getText().toString().trim();
 
-        if (email.isEmpty()){
+        if (email.isEmpty()) {
             etAdminEmail.setError("Email is required!");
             etAdminEmail.requestFocus();
             return;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             etAdminEmail.setError("Invalid email!");
             etAdminEmail.requestFocus();
             return;
         }
-        if (pass.isEmpty()){
+        if (pass.isEmpty()) {
             etAdminPassword.setError("Password is required!");
             etAdminPassword.requestFocus();
             return;
@@ -82,7 +85,7 @@ public class AdminLoginActivity extends AppCompatActivity {
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     progress.setVisibility(View.GONE);
                     startActivity(new Intent(AdminLoginActivity.this, AdminActivity.class));
                     Toast.makeText(AdminLoginActivity.this, "Login successfully!",

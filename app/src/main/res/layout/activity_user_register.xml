@@ -67,6 +67,17 @@
                 android:inputType="textPassword"
                 android:padding="20dp" />
 
+            <EditText
+                android:id="@+id/txtConfirmPass"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_baseline_vpn_key_24"
+                android:gravity="center"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:padding="20dp" />
+
             <Button
                 android:id="@+id/btnSubmitRegister"
                 android:layout_width="match_parent"
