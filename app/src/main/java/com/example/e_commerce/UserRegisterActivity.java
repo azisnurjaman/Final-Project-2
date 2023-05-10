@@ -78,7 +78,6 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
             pass.requestFocus();
             return;
         }
-
         else if (tConfirmPass.equals(tPass)){
             confirmPass.requestFocus();
         } else {
