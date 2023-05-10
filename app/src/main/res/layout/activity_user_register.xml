@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtPass"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtConfirmPass"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"

@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AddStaffActivity extends AppCompatActivity {
-    public EditText inputStaffName, inputStaffEmail, inputStaffPassword;
+    public EditText inputStaffName, inputStaffEmail, inputStaffPassword, inputConfirmStaffPassword;
     private Button btnAddStaff;
     private ProgressBar progress;
     FirebaseAuth auth;
@@ -40,6 +40,7 @@ public class AddStaffActivity extends AppCompatActivity {
         inputStaffName = findViewById(R.id.etStaffName);
         inputStaffEmail = findViewById(R.id.etStaffEmail);
         inputStaffPassword = findViewById(R.id.etStaffPassword);
+        inputConfirmStaffPassword = findViewById(R.id.etStaffConfirmPassword);
 
         progress = (ProgressBar) findViewById(R.id.progress);
 
@@ -56,10 +57,11 @@ public class AddStaffActivity extends AppCompatActivity {
     }
 
     private void addStaffAccount() {
-        String staffName, staffEmail, staffPassword;
+        String staffName, staffEmail, staffPassword, staffConfirmPassword;
         staffName = inputStaffName.getText().toString();
         staffEmail = inputStaffEmail.getText().toString();
         staffPassword = inputStaffPassword.getText().toString();
+        staffConfirmPassword = inputConfirmStaffPassword.getText().toString();
 
         if (staffName.isEmpty()){
             inputStaffName.setError("User Name is required!");
@@ -84,6 +86,11 @@ public class AddStaffActivity extends AppCompatActivity {
         if (staffPassword.length() <= 5){
             inputStaffPassword.setError("Min password length should be more then 5 characters!");
             inputStaffPassword.requestFocus();
+            return;
+        } else if (staffConfirmPassword.equals(staffPassword)){
+            inputConfirmStaffPassword.requestFocus();
+        } else {
+            inputConfirmStaffPassword.setError("Please check your password again!");
             return;
         }
 
