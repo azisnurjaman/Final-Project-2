@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="20dp"
-    tools:context=".AddStaffActivity"
+    android:padding="15dp"
+    tools:context=".AddStockActivity"
     android:gravity="center">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView"
@@ -18,63 +27,15 @@
         android:textSize="30sp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:text="Stock Dashboard" />
+        android:text="Add Product" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="10dp"
-        android:elevation="10dp"
-        app:cardUseCompatPadding="true">
-
-        <EditText
-            android:id="@+id/etIdItem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:textColor="@color/black"
-            android:hint="ID Item"
-            android:padding="20dp" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="10dp"
-        android:elevation="10dp"
-        app:cardUseCompatPadding="true">
-
-        <EditText
-            android:id="@+id/etQuantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Quantity"
-            android:padding="20dp"
-            android:textColor="@color/black"
-            android:background="@null"/>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="10dp"
-        android:elevation="10dp"
-        app:cardUseCompatPadding="true">
-
-        <Spinner
-            android:id="@+id/dropdownCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:entries="@array/category"
-            android:spinnerMode="dropdown" />
-
-    </androidx.cardview.widget.CardView>
+        <ImageView
+            android:id="@+id/etImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#ccc"
+            android:src="@drawable/ic_baseline_image_search_24"
+            android:scaleType="fitCenter"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -103,14 +64,13 @@
         android:elevation="10dp"
         app:cardUseCompatPadding="true">
 
-        <EditText
-            android:id="@+id/etProductDescription"
+        <Spinner
+            android:id="@+id/dropdownCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="Product Description"
             android:padding="20dp"
-            android:textColor="@color/black" />
+            android:entries="@array/category"
+            android:spinnerMode="dropdown" />
 
     </androidx.cardview.widget.CardView>
 
@@ -123,24 +83,29 @@
         app:cardUseCompatPadding="true">
 
         <EditText
-            android:id="@+id/etProductPicture"
+            android:id="@+id/etQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="Product Picture Link"
+            android:hint="Quantity"
             android:padding="20dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:background="@null"/>
 
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnAddStock"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Stock"
+        android:layout_height="55dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Submit"
         android:background="@null"
         android:backgroundTint="@color/blue"
         android:layout_margin="3dp"/>
 
+    </LinearLayout>
 
-</LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

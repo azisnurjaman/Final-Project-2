@@ -5,12 +5,11 @@ import java.io.Serializable;
 public class Stock {
     private String id, quantity, name, description, category, picture, brand;
 
-    public Stock(String id, String quantity, String category, String name, String description, String picture){
+    public Stock(String id, String quantity, String category, String name, String picture){
         this.id = id;
         this.quantity = quantity;
         this.category = category;
         this.name = name;
-        this.description = description;
         this.picture = picture;
     }
 
@@ -38,14 +37,6 @@ public class Stock {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -60,13 +51,5 @@ public class Stock {
 
     public void setPicture(String picture) {
         this.picture = picture;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 }

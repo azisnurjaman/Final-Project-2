@@ -34,10 +34,15 @@
                 android:visibility="gone"
                 android:indeterminateDrawable="@drawable/progress" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtUserName"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:drawableStart="@drawable/ic_baseline_person_24"
                 android:gravity="center"
@@ -45,66 +50,68 @@
                 android:inputType="textPersonName"
                 android:padding="20dp" />
 
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:drawableStart="@drawable/ic_baseline_email_24"
                     android:gravity="center"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
-                    android:padding="20dp"
-                    android:background="@color/white"/>
+                    android:padding="20dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtPass"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:drawableStart="@drawable/ic_baseline_vpn_key_24"
                     android:gravity="center"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:padding="20dp"
-                    android:background="@color/white"/>
+                    android:padding="20dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtConfirmPass"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:drawableStart="@drawable/ic_baseline_vpn_key_24"
                     android:gravity="center"
                     android:hint="Confirm Password"
                     android:inputType="textPassword"
-                    android:padding="20dp"
-                    android:background="@color/white"/>
+                    android:padding="20dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnSubmitRegister"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/blue"
                 android:fontFamily="sans-serif-black"
