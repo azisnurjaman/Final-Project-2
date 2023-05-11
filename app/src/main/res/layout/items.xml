@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/ImgItem"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logo"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:id="@+id/TxtNamaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Produk"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_toRightOf="@+id/ImgItem"
+                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+
+            <TextView
+                android:id="@+id/TxtJenisProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jenis Produk"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_below="@id/TxtNamaProduk"
+                android:layout_toRightOf="@+id/ImgItem"
+                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+
+            <TextView
+                android:id="@+id/TxtHarga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Harga Produk"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_below="@id/TxtJenisProduk"
+                android:layout_toRightOf="@+id/ImgItem"
+                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+
+            <TextView
+                android:id="@+id/TxtStok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stok Produk"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_below="@id/TxtHarga"
+                android:layout_toRightOf="@+id/ImgItem"
+                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+
+            <ImageView
+                android:id="@+id/ImgItemMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:src="@drawable/ic_baseline_more_vert_24"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -23,7 +23,7 @@
             android:name=".StaffLoginActivity"
             android:exported="true" />
         <activity
-            android:name=".UserActivity"
+            android:name=".FragmentProduct"
             android:exported="true" />
         <activity
             android:name=".AdminLoginActivity"
