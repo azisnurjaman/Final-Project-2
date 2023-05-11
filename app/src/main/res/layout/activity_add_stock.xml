@@ -102,6 +102,10 @@
         android:elevation="10dp"
         app:cardUseCompatPadding="true">
 
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
         <EditText
             android:id="@+id/etProductDescription"
             android:layout_width="match_parent"
@@ -109,7 +113,11 @@
             android:hint="Product Description"
             android:padding="20dp"
             android:textColor="@color/black"
+            android:inputType="text|textMultiLine"
+            android:gravity="top"
             android:background="@null"/>
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.cardview.widget.CardView>
 

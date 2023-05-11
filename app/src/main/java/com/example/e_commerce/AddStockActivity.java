@@ -50,6 +50,8 @@ public class AddStockActivity extends AppCompatActivity {
     private Spinner dropdownCategory;
     private FirebaseDatabase db;
     private String id;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,9 @@ public class AddStockActivity extends AppCompatActivity {
         etProductDescription = findViewById(R.id.etProductDescription);
         btnAddStock = findViewById(R.id.btnAddStock);
         dropdownCategory = findViewById(R.id.dropdownCategory);
+
+        storage  = FirebaseStorage.getInstance();
+        storageRef  = storage.getReference("images").child("IMG" + new Date().getTime() + ".png");
 
         btnAddStock.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,9 +145,6 @@ public class AddStockActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
             byte[] data = baos.toByteArray();
 
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference storageRef = storage.getReference("images").child("IMG" + new Date().getTime() + ".png");
-
             UploadTask uploadTask = storageRef.putBytes(data);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -158,21 +160,21 @@ public class AddStockActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Uri> task) {
                                     if (task.getResult() == null) {
-                                        Toast.makeText(AddStockActivity.this, "Image has not been uploaded yet!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AddStockActivity.this, "Image has not been uploaded!", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
                         } else {
-                            Toast.makeText(AddStockActivity.this, "Image has not been uploaded yet!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddStockActivity.this, "Image has not been uploaded!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(AddStockActivity.this, "Image has not been uploaded yet!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddStockActivity.this, "Image has not been uploaded!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(AddStockActivity.this, "Image has not been uploaded yet!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddStockActivity.this, "Image has not been uploaded!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -184,9 +186,8 @@ public class AddStockActivity extends AppCompatActivity {
         String productDescription = etProductDescription.getText().toString();
         String image = img.getDrawable().toString();
 
-        if (image.equals(R.drawable.ic_baseline_image_search_24)) {
+        if (image.equals(img.getDrawable() == null)) {
             Toast.makeText(AddStockActivity.this, "Product image is required!", Toast.LENGTH_SHORT).show();
-            img.requestFocus();
             return;
         }
         if (productName.isEmpty()) {
@@ -199,28 +200,38 @@ public class AddStockActivity extends AppCompatActivity {
             etQuantity.requestFocus();
             return;
         }
+        if (quantity.equals("0")) {
+            etQuantity.setError("Quantity should not be less than 1!");
+            etQuantity.requestFocus();
+            return;
+        }
         if (productName.isEmpty()) {
             etProductDescription.setError("Product description is required!");
             etProductDescription.requestFocus();
             return;
         }
 
-        Stock stock = new Stock (id, quantity, category, productName, productDescription, image);
-        FirebaseStockUtils.getRefrence(FirebaseStockUtils.ITEMS_PATH).child(id)
-                .setValue(stock).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                upload();
-                Toast.makeText(AddStockActivity.this, "Product has been successfully added!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(AddStockActivity.this, AdminActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AddStockActivity.this, "Product failed to add!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        try {
+            Stock stock = new Stock(id, quantity, category, productName, productDescription, image);
+            FirebaseStockUtils.getRefrence(FirebaseStockUtils.ITEMS_PATH).child(id)
+                    .setValue(stock).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            upload();
+                            Toast.makeText(AddStockActivity.this, "Product has been successfully added!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(AddStockActivity.this, AdminActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AddStockActivity.this, "Product failed to add!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(AddStockActivity.this, "Product image is required!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

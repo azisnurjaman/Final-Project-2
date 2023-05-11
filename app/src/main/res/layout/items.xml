@@ -26,8 +26,7 @@
                 android:text="Nama Produk"
                 android:textColor="@color/black"
                 android:textSize="15dp"
-                android:layout_toRightOf="@+id/ImgItem"
-                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+                android:layout_toRightOf="@+id/ImgItem" />
 
             <TextView
                 android:id="@+id/TxtJenisProduk"
@@ -37,8 +36,7 @@
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:layout_below="@id/TxtNamaProduk"
-                android:layout_toRightOf="@+id/ImgItem"
-                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+                android:layout_toRightOf="@+id/ImgItem" />
 
             <TextView
                 android:id="@+id/TxtHarga"
@@ -48,8 +46,7 @@
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:layout_below="@id/TxtJenisProduk"
-                android:layout_toRightOf="@+id/ImgItem"
-                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+                android:layout_toRightOf="@+id/ImgItem" />
 
             <TextView
                 android:id="@+id/TxtStok"
@@ -59,16 +56,15 @@
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:layout_below="@id/TxtHarga"
-                android:layout_toRightOf="@+id/ImgItem"
-                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+                android:layout_toRightOf="@+id/ImgItem" />
 
-            <ImageView
+            <!--<ImageView
                 android:id="@+id/ImgItemMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"/>-->
 
         </RelativeLayout>
 
