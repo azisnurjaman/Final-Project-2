@@ -1,4 +1,4 @@
-package com.example.e_commerce.;
+package com.example.e_commerce;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -60,6 +60,7 @@ public class AddStockActivity extends AppCompatActivity {
         img = findViewById(R.id.etImage);
         etQuantity = findViewById(R.id.etQuantity);
         etProductName = findViewById(R.id.etProductName);
+        etProductDescription = findViewById(R.id.etProductDescription);
         btnAddStock = findViewById(R.id.btnAddStock);
         dropdownCategory = findViewById(R.id.dropdownCategory);
 
@@ -180,6 +181,7 @@ public class AddStockActivity extends AppCompatActivity {
         String quantity = etQuantity.getText().toString();
         String category = dropdownCategory.getSelectedItem().toString();
         String productName = etProductName.getText().toString();
+        String productDescription = etProductDescription.getText().toString();
         String image = img.getDrawable().toString();
 
         if (image.equals(R.drawable.ic_baseline_image_search_24)) {
@@ -197,8 +199,13 @@ public class AddStockActivity extends AppCompatActivity {
             etQuantity.requestFocus();
             return;
         }
+        if (productName.isEmpty()) {
+            etProductDescription.setError("Product description is required!");
+            etProductDescription.requestFocus();
+            return;
+        }
 
-        Stock stock = new Stock (id, quantity, category, productName, image);
+        Stock stock = new Stock (id, quantity, category, productName, productDescription, image);
         FirebaseStockUtils.getRefrence(FirebaseStockUtils.ITEMS_PATH).child(id)
                 .setValue(stock).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

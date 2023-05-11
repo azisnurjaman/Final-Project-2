@@ -72,7 +72,7 @@ public class UserLoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     progress.setVisibility(View.GONE);
-                    startActivity(new Intent(UserLoginActivity.this, UserActivity.class));
+                    startActivity(new Intent(UserLoginActivity.this, UserLoginActivity.class));
                     Toast.makeText(UserLoginActivity.this, "Login successfully!",
                             Toast.LENGTH_LONG).show();
                 } else {
