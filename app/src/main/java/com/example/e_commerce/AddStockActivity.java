@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 public class AddStockActivity extends AppCompatActivity {
     private EditText etQuantity, etProductName, etProductDescription;
@@ -119,7 +120,6 @@ public class AddStockActivity extends AppCompatActivity {
             });
             thread.start();
         }
-
         if (requestCode == 10 && resultCode == RESULT_OK){
             final Bundle bundle = data.getExtras();
             Thread thread = new Thread(() -> {
@@ -132,50 +132,35 @@ public class AddStockActivity extends AppCompatActivity {
         }
     }
 
-    private void upload() {
-        if (img.getDrawable() == null) {
-            Toast.makeText(AddStockActivity.this, "Please select an image to upload!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        try {
-            img.setDrawingCacheEnabled(true);
-            img.buildDrawingCache();
-            Bitmap bitmap = ((BitmapDrawable) img.getDrawable()).getBitmap();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-            byte[] data = baos.toByteArray();
+    private void upload(String id) {
+        img.setDrawingCacheEnabled(true);
+        img.buildDrawingCache();
+        Bitmap bitmap = ((BitmapDrawable) img.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
 
-            UploadTask uploadTask = storageRef.putBytes(data);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    Toast.makeText(AddStockActivity.this, "Failed to add image!", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    if (taskSnapshot.getMetadata() != null) {
-                        if (taskSnapshot.getMetadata().getReference() != null) {
-                            taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Uri> task) {
-                                    if (task.getResult() == null) {
-                                        Toast.makeText(AddStockActivity.this, "Image has not been uploaded!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                        } else {
-                            Toast.makeText(AddStockActivity.this, "Image has not been uploaded!", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(AddStockActivity.this, "Image has not been uploaded!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(AddStockActivity.this, "Image has not been uploaded!", Toast.LENGTH_SHORT).show();
-        }
+        String imageId = UUID.randomUUID().toString();
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imageRef = storageRef.child("images/" + imageId + ".jpg");
+        UploadTask uploadTask = imageRef.putBytes(imageBytes);
+
+        uploadTask.continueWithTask(task -> {
+            if (!task.isSuccessful()) {
+                throw task.getException();
+            }
+            return imageRef.getDownloadUrl();
+        }).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                String imageUrl = task.getResult().toString();
+                DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+                databaseRef.child("products").child(id).child("imageUrl").setValue(imageUrl);
+            } else {
+                Exception e = task.getException();
+                Toast.makeText(AddStockActivity.this, "Image upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void addStock() {
@@ -186,7 +171,7 @@ public class AddStockActivity extends AppCompatActivity {
         String productDescription = etProductDescription.getText().toString();
         String image = img.getDrawable().toString();
 
-        if (image.equals(img.getDrawable() == null)) {
+        if (img.getDrawable() == null) {
             Toast.makeText(AddStockActivity.this, "Product image is required!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -205,19 +190,18 @@ public class AddStockActivity extends AppCompatActivity {
             etQuantity.requestFocus();
             return;
         }
-        if (productName.isEmpty()) {
+        if (productDescription.isEmpty()) {
             etProductDescription.setError("Product description is required!");
             etProductDescription.requestFocus();
             return;
         }
-
         try {
             Stock stock = new Stock(id, quantity, category, productName, productDescription, image);
             FirebaseStockUtils.getRefrence(FirebaseStockUtils.ITEMS_PATH).child(id)
                     .setValue(stock).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            upload();
+                            upload(id);
                             Toast.makeText(AddStockActivity.this, "Product has been successfully added!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(AddStockActivity.this, AdminActivity.class);
                             startActivity(intent);
