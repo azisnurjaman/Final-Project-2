@@ -1,5 +1,7 @@
 package com.example.e_commerce;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -14,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.service.media.MediaBrowserService;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -123,44 +126,53 @@ public class AddStockActivity extends AppCompatActivity {
         }
     }
 
-    private void upload(){
-        img.setDrawingCacheEnabled(true);
-        img.buildDrawingCache();
-        Bitmap bitmap = ((BitmapDrawable) img.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] data = baos.toByteArray();
+    private void upload() {
+        if (img.getDrawable() == null) {
+            Toast.makeText(AddStockActivity.this, "Please select an image to upload!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            img.setDrawingCacheEnabled(true);
+            img.buildDrawingCache();
+            Bitmap bitmap = ((BitmapDrawable) img.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            byte[] data = baos.toByteArray();
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference("images").child("IMG"+new Date().getTime()+".png");
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference("images").child("IMG" + new Date().getTime() + ".png");
 
-        UploadTask uploadTask = storageRef.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(AddStockActivity.this, "Failed to add image!", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                if (taskSnapshot.getMetadata() != null) {
-                    if (taskSnapshot.getMetadata().getReference() != null) {
-                        taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Uri> task) {
-                                if (task.getResult() == null) {
-                                    Toast.makeText(AddStockActivity.this, "Error! Something went wrong.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    } else {
-                        Toast.makeText(AddStockActivity.this, "Error! Something went wrong.", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(AddStockActivity.this, "Error! Something went wrong.", Toast.LENGTH_SHORT).show();
+            UploadTask uploadTask = storageRef.putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Toast.makeText(AddStockActivity.this, "Failed to add image!", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    if (taskSnapshot.getMetadata() != null) {
+                        if (taskSnapshot.getMetadata().getReference() != null) {
+                            taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    if (task.getResult() == null) {
+                                        Toast.makeText(AddStockActivity.this, "Image has not been uploaded yet!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        } else {
+                            Toast.makeText(AddStockActivity.this, "Image has not been uploaded yet!", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(AddStockActivity.this, "Image has not been uploaded yet!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(AddStockActivity.this, "Image has not been uploaded yet!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void addStock() {
