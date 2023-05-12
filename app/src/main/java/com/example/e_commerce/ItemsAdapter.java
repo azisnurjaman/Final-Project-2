@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> {
@@ -41,11 +43,13 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         final String c = listItem.get(position).getCategory();
         final String q = listItem.get(position).getQuantity();
         final String d = listItem.get(position).getDescription();
+        final String imageURL = listItem.get(position).getPicture();
 
         holder.TxtProduct.setText(n);
         holder.TxtProductCategory.setText(c);
         holder.TxtQuantity.setText(q);
         holder.TxtDesc.setText(d);
+        Picasso.get().load(imageURL).into(holder.ImgItem);
     }
 
     @Override
@@ -67,3 +71,4 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         }
     }
 }
+

@@ -18,8 +18,8 @@
                 android:id="@+id/ImgItem"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/logo"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/logo"/>
 
             <TextView
                 android:id="@+id/TxtProduct"
