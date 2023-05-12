@@ -9,36 +9,27 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class UserActivity extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity {
+
     private String TAG = UserActivity.class.getSimpleName();
 
     private FrameLayout container;
     private BottomNavigationView nav;
-    private Button fashion;
 
-    private final FragmentBranda berandaFragment = new FragmentBranda();
-    private final FragmentFashion fragmentFashion = new FragmentFashion();
     private final UserFragment userFragment = new UserFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        setContentView(R.layout.activity_fashion);
 
         initView();
 
-        fashion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(UserActivity.this, FashionActivity.class));
-            }
-        });
+        loadFragment(userFragment);
 
         nav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,11 +37,11 @@ public class UserActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.action_beranda :
-                                startActivity(new Intent(UserActivity.this, UserActivity.class));
+                                startActivity(new Intent(UserProfileActivity.this, UserActivity.class));
                                 finish();
                                 return true;
                             case R.id.action_profile :
-                                startActivity(new Intent(UserActivity.this, UserProfileActivity.class));
+                                startActivity(new Intent(UserProfileActivity.this, UserProfileActivity.class));
                                 finish();
                                 return true;
                         }
@@ -63,7 +54,6 @@ public class UserActivity extends AppCompatActivity {
     private void initView(){
         container = findViewById(R.id.container);
         nav = findViewById(R.id.nav);
-        fashion = findViewById(R.id.btnFashion);
     }
 
     private void loadFragment(Fragment fragment){

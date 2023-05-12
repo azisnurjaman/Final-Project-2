@@ -3,9 +3,11 @@
     <item
         android:id="@+id/action_beranda"
         android:title="Beranda"
+        android:iconTint="@color/blue"
         android:icon="@drawable/ic_baseline_home_24"/>
     <item
         android:id="@+id/action_profile"
         android:title="Setting"
+        android:iconTint="@color/blue"
         android:icon="@drawable/ic_baseline_settings_24"/>
 </menu>
