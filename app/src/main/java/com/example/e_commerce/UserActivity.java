@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserActivity extends AppCompatActivity {
+
     private String TAG = UserActivity.class.getSimpleName();
 
     private FrameLayout container;
@@ -20,6 +21,8 @@ public class UserActivity extends AppCompatActivity {
 
     private final FragmentBranda berandaFragment = new FragmentBranda();
     private final FragmentFashion fragmentFashion = new FragmentFashion();
+
+    private final FragmentBooks fragmentBooks = new FragmentBooks();
     private final UserFragment userFragment = new UserFragment();
 
     @Override
@@ -29,14 +32,14 @@ public class UserActivity extends AppCompatActivity {
 
         initView();
 
-        loadFragment(fragmentFashion);
+        loadFragment(fragmentBooks);
 
         nav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
-                            case R.id.action_beranda : loadFragment(fragmentFashion);
+                            case R.id.action_beranda : loadFragment(fragmentBooks);
                                 return true;
                             case R.id.action_profile : loadFragment(userFragment);
                                 return true;

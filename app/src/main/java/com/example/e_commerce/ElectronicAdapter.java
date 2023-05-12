@@ -45,10 +45,10 @@ public class ElectronicAdapter extends RecyclerView.Adapter<ElectronicAdapter.Vi
         final String d = listItem.get(position).getDescription();
         final String imageURL = listItem.get(position).getPicture();
 
-        holder.TxtProduct.setText("Product Name : " + n);
-        holder.TxtProductCategory.setText(c);
-        holder.TxtQuantity.setText(q);
-        holder.TxtDesc.setText(d);
+        holder.TxtProduct.setText("Product Name : \n" + n);
+        holder.TxtProductCategory.setText("\nCategory : \n" + c);
+        holder.TxtQuantity.setText("\nQuantity : \n " + q);
+        holder.TxtDesc.setText("\nDescription : \n" +d);
         Picasso.get().load(imageURL).into(holder.ImgItem);
     }
 
