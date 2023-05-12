@@ -17,9 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UserLoginActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private ProgressBar progress;
@@ -70,7 +67,8 @@ public class UserLoginActivity extends AppCompatActivity {
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
+                if (task.isSuccessful() && task.getResult() != null && task.getResult().getUser() != null
+                        && task.getResult().getUser().isEmailVerified()) {
                     progress.setVisibility(View.GONE);
                     startActivity(new Intent(UserLoginActivity.this, UserActivity.class));
                     Toast.makeText(UserLoginActivity.this, "Login successfully!",

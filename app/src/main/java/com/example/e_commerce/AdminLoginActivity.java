@@ -43,7 +43,6 @@ public class AdminLoginActivity extends AppCompatActivity {
     private Button btnAdminLogin;
     private ProgressBar progress;
     private FirebaseAuth auth;
-    private DatabaseReference dbR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,15 +86,16 @@ public class AdminLoginActivity extends AppCompatActivity {
         }
 
         progress.setVisibility(View.VISIBLE);
-        /*dbR = FirebaseDatabase.getInstance("https://final-project-44dce-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                .getReference("admin");
-        .orderByChild("pass").equalTo(pass).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()){
-                            String getPass = snapshot.child(email).child("pass").getValue(String.class);
-
-                            if (getPass.equals(pass)){
+        DatabaseReference adminsRef = FirebaseDatabase.getInstance("https://final-project-44dce-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("admin");
+        Query query = adminsRef.orderByChild("email").equalTo(email);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
                                 progress.setVisibility(View.GONE);
                                 startActivity(new Intent(AdminLoginActivity.this, AdminActivity.class));
                                 Toast.makeText(AdminLoginActivity.this, "Login successfully!",
@@ -105,31 +105,20 @@ public class AdminLoginActivity extends AppCompatActivity {
                                 Toast.makeText(AdminLoginActivity.this, "Login Failed, please check your credentials and try again!",
                                         Toast.LENGTH_LONG).show();
                             }
-                        } else {
-                            progress.setVisibility(View.GONE);
-                            Toast.makeText(AdminLoginActivity.this, "Login Failed, please check your credentials and try again!",
-                                    Toast.LENGTH_LONG).show();
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });*/
-        auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    progress.setVisibility(View.GONE);
-                    startActivity(new Intent(AdminLoginActivity.this, AdminActivity.class));
-                    Toast.makeText(AdminLoginActivity.this, "Login successfully!",
-                            Toast.LENGTH_LONG).show();
+                    });
                 } else {
                     progress.setVisibility(View.GONE);
                     Toast.makeText(AdminLoginActivity.this, "Login Failed, please check your credentials and try again!",
                             Toast.LENGTH_LONG).show();
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                progress.setVisibility(View.GONE);
+                Toast.makeText(AdminLoginActivity.this, "Login Failed, please check your credentials and try again!",
+                        Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -15,6 +15,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class StaffLoginActivity extends AppCompatActivity {
     
@@ -53,19 +59,38 @@ public class StaffLoginActivity extends AppCompatActivity {
         staffEmail = etStaffEmail.getText().toString();
         staffPassword = etStaffPassword.getText().toString();
 
-        auth.signInWithEmailAndPassword(staffEmail, staffPassword).addOnCompleteListener(
-                new OnCompleteListener<AuthResult>() {
+        auth.signInWithEmailAndPassword(staffEmail, staffPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful() && task.getResult() != null) {
-                            Intent intent = new Intent(StaffLoginActivity.this, StaffActivity.class);
-                            startActivity(intent);
-                            Toast.makeText(StaffLoginActivity.this, "Login successfully!", Toast.LENGTH_LONG).show();
+                            FirebaseUser user = task.getResult().getUser();
+                            if (user != null) {
+                                String uid = user.getUid();
+                                DatabaseReference staffsRef = FirebaseDatabase.getInstance().getReference().child("staffs").child(uid);
+                                staffsRef.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()) {
+                                            Intent intent = new Intent(StaffLoginActivity.this, StaffActivity.class);
+                                            startActivity(intent);
+                                            Toast.makeText(StaffLoginActivity.this, "Login successfully!", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(StaffLoginActivity.this, "Login Failed, please check your credentials and try again!", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Toast.makeText(StaffLoginActivity.this, "Login Failed, please check your credentials and try again!", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
                         } else {
-                            Toast.makeText(StaffLoginActivity.this, "Login Failed, please check your credentials and try again!",
-                                    Toast.LENGTH_LONG).show();
+                            Toast.makeText(StaffLoginActivity.this, "Login Failed, please check your credentials and try again!", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
+
 }
