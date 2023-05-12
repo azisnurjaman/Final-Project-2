@@ -6,11 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,7 +17,6 @@ public class UserActivity extends AppCompatActivity {
 
     private FrameLayout container;
     private BottomNavigationView nav;
-    private Button fashion;
 
     private final FragmentBranda berandaFragment = new FragmentBranda();
     private final FragmentFashion fragmentFashion = new FragmentFashion();
@@ -33,25 +29,16 @@ public class UserActivity extends AppCompatActivity {
 
         initView();
 
-        fashion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(UserActivity.this, FashionActivity.class));
-            }
-        });
+        loadFragment(fragmentFashion);
 
         nav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
-                            case R.id.action_beranda :
-                                startActivity(new Intent(UserActivity.this, UserActivity.class));
-                                finish();
+                            case R.id.action_beranda : loadFragment(fragmentFashion);
                                 return true;
-                            case R.id.action_profile :
-                                startActivity(new Intent(UserActivity.this, UserProfileActivity.class));
-                                finish();
+                            case R.id.action_profile : loadFragment(userFragment);
                                 return true;
                         }
                         return false;
@@ -63,7 +50,6 @@ public class UserActivity extends AppCompatActivity {
     private void initView(){
         container = findViewById(R.id.container);
         nav = findViewById(R.id.nav);
-        fashion = findViewById(R.id.btnFashion);
     }
 
     private void loadFragment(Fragment fragment){
