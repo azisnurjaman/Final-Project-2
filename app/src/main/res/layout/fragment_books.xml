@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        android:elevation="10dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:id="@+id/ImgItem"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/logo"
+                android:paddingRight="5dp"/>
+
+            <TextView
+                android:id="@+id/TxtProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_toRightOf="@+id/ImgItem"/>
+
+            <TextView
+                android:id="@+id/TxtProductCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_below="@id/TxtProduct"
+                android:layout_toRightOf="@+id/ImgItem"/>
+
+            <TextView
+                android:id="@+id/TxtQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_below="@id/TxtProductCategory"
+                android:layout_toRightOf="@+id/ImgItem"/>
+
+            <TextView
+                android:id="@+id/TxtDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_below="@id/TxtQuantity"
+                android:layout_toRightOf="@+id/ImgItem"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
