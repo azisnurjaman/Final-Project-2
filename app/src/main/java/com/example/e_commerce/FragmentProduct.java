@@ -24,8 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-abstract class FragmentProduct extends Fragment implements ItemsAdapter.ItemListener{
+public class FragmentProduct extends Fragment{
     private String TAG = FragmentProduct.class.getSimpleName();
+    private FloatingActionButton add;
     private RecyclerView viewItem;
     private ArrayList<Stock> listItem;
     private RecyclerView.LayoutManager layoutManager;
@@ -48,8 +49,6 @@ abstract class FragmentProduct extends Fragment implements ItemsAdapter.ItemList
                     stock.setId(snapshot.getKey());
                     listItem.add(stock);
                 }
-                adapter = new ItemsAdapter(listItem, getActivity(), FragmentProduct.this);
-                viewItem.setAdapter(adapter);
             }
 
             @Override

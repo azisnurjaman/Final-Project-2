@@ -20,12 +20,10 @@ import java.util.ArrayList;
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> {
     private ArrayList<Stock> listItem;
     private Context context;
-    private ItemListener listener;
 
-    public ItemsAdapter(ArrayList<Stock> listItem, Context context, ItemListener listener){
+    public ItemsAdapter(ArrayList<Stock> listItem, Context context){
         this.listItem = listItem;
         this.context = context;
-        this.listener = listener;
     }
 
     @NonNull
@@ -39,36 +37,15 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
     @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final String n = listItem.get(position).getName();
-        final String c = listItem.get(position).getCategory();
-        final String d = listItem.get(position).getDescription();
-        final String q = listItem.get(position).getQuantity();
+        final String np = listItem.get(position).getName();
+        final String jp = listItem.get(position).getCategory();
+        final String h = listItem.get(position).getQuantity();
+        final String s = listItem.get(position).getDescription();
 
-        holder.TxtProduct.setText(n);
-        holder.TxtProductCategory.setText(c);
-        holder.TxtDesc.setText(d);
-        holder.TxtQuantity.setText(q);
-        holder.imgItemMenu.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            PopupMenu popupMenu = new PopupMenu(context, holder.imgItemMenu);
-            popupMenu.inflate(R.menu.item_menu);
-            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem menuItem) {
-                    switch (menuItem.getItemId()){
-                        case R.id.action_delete:
-                            listener.delete(listItem.get(position), position);
-                            return true;
-
-                        default:
-                            return false;
-                    }
-                }
-            });
-            popupMenu.show();
-        }
-        });
+        holder.TxtProduct.setText(np);
+        holder.TxtProductCategory.setText(jp);
+        holder.TxtQuantity.setText(h);
+        holder.TxtDesc.setText(String.valueOf(s));
     }
 
     @Override
@@ -77,7 +54,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView ImgItem, imgItemMenu;
+        private ImageView ImgItem;
         private TextView TxtProduct, TxtProductCategory, TxtDesc, TxtQuantity;
 
         public ViewHolder(@NonNull View itemView) {
@@ -87,10 +64,9 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             TxtProductCategory = itemView.findViewById(R.id.TxtProductCategory);
             TxtQuantity = itemView.findViewById(R.id.TxtQuantity);
             TxtDesc = itemView.findViewById(R.id.TxtDesc);
-            imgItemMenu = itemView.findViewById(R.id.ImgItemMenu);
         }
     }
-    public interface ItemListener{
+/*    public interface ItemListener{
         void delete(Stock stock, int position);
-    }
+    }*/
 }

@@ -5,6 +5,10 @@ import java.io.Serializable;
 public class Stock {
     private String id, quantity, name, description, category, picture;
 
+    public Stock(){
+
+    }
+
     public Stock(String id, String quantity, String category, String name, String description, String picture){
         this.id = id;
         this.quantity = quantity;

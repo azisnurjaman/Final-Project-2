@@ -15,6 +15,9 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".StockAdapter"
+            android:exported="false" />
+        <activity
             android:name=".StaffActivity"
             android:exported="true" />
         <activity
