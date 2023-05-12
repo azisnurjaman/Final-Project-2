@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -19,10 +23,9 @@
         <Spinner
             android:id="@+id/spinner"
             android:layout_height="50dp"
-            android:layout_width="match_parent"
+            android:layout_width="160dp"
             android:layout_marginLeft="160dp"
             android:layout_marginTop="5dp" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -30,13 +33,22 @@
             android:background="@color/blue"
             />
 
+    </RelativeLayout>
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:layout_marginTop="75dp">
+            android:layout_marginTop="15dp">
 
             <ImageView
                 android:id="@+id/ImgItem"
@@ -55,13 +67,23 @@
                 android:layout_toRightOf="@+id/ImgItem"/>
 
             <TextView
+                android:id="@+id/TxtDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_below="@id/TxtProduct"
+                android:layout_toRightOf="@+id/ImgItem"/>
+
+            <TextView
                 android:id="@+id/TxtProductCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Category"
                 android:textColor="@color/black"
                 android:textSize="15dp"
-                android:layout_below="@id/TxtProduct"
+                android:layout_below="@id/TxtDesc"
                 android:layout_toRightOf="@+id/ImgItem"/>
 
 
@@ -74,26 +96,6 @@
                 android:textSize="15dp"
                 android:layout_below="@id/TxtProductCategory"
                 android:layout_toRightOf="@+id/ImgItem"/>
-
-            <TextView
-                android:id="@+id/TxtDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:layout_below="@id/TxtQuantity"
-                android:layout_toRightOf="@+id/ImgItem"/>
-
-            <ImageView
-                android:id="@+id/ImgItemMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/ic_baseline_more_vert_24"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:visibility="invisible"/>
 
 
         </RelativeLayout>
