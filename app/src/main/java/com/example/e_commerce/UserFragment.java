@@ -68,7 +68,7 @@ public class UserFragment extends Fragment {
 
         logout.setOnClickListener(view -> {
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getActivity(), UserLoginActivity.class));
+            startActivity(new Intent(getActivity(), StartActivity.class));
             Toast.makeText(getActivity(), "Logout successfully!",
                     Toast.LENGTH_LONG).show();
             System.exit(0);

@@ -155,7 +155,7 @@ public class AddStockActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 String imageUrl = task.getResult().toString();
                 DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
-                databaseRef.child("products").child(id).child("imageUrl").setValue(imageUrl);
+                databaseRef.child("products").child(id).child("picture").setValue(imageUrl);
             } else {
                 Exception e = task.getException();
                 Toast.makeText(AddStockActivity.this, "Image upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
