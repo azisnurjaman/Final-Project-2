@@ -3,13 +3,14 @@ package com.example.e_commerce;
 import java.io.Serializable;
 
 public class Stock {
-    private String id, quantity, name, description, category, picture, brand;
+    private String id, quantity, name, description, category, picture;
 
-    public Stock(String id, String quantity, String category, String name, String picture){
+    public Stock(String id, String quantity, String category, String name, String description, String picture){
         this.id = id;
         this.quantity = quantity;
         this.category = category;
         this.name = name;
+        this.description = description;
         this.picture = picture;
     }
 
@@ -43,6 +44,14 @@ public class Stock {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPicture() {

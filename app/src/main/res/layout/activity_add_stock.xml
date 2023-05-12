@@ -94,6 +94,33 @@
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        android:elevation="10dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+        <EditText
+            android:id="@+id/etProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Description"
+            android:padding="20dp"
+            android:textColor="@color/black"
+            android:inputType="text|textMultiLine"
+            android:gravity="top"
+            android:background="@null"/>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.cardview.widget.CardView>
+
     <Button
         android:id="@+id/btnAddStock"
         android:layout_width="match_parent"

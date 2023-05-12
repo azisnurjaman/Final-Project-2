@@ -33,7 +33,6 @@ public class FragmentProduct extends Fragment implements ItemsAdapter.ItemListen
         layoutManager = new LinearLayoutManager(getActivity());
         viewItem.setLayoutManager(layoutManager);
 
-
         FirebaseStockUtils.getRefrence(FirebaseStockUtils.ITEMS_PATH).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
