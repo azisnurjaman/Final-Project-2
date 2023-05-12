@@ -45,7 +45,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         final String d = listItem.get(position).getDescription();
         final String imageURL = listItem.get(position).getPicture();
 
-        holder.TxtProduct.setText("Product Name : " + n);
+        holder.TxtProduct.setText(n);
         holder.TxtProductCategory.setText(c);
         holder.TxtQuantity.setText(q);
         holder.TxtDesc.setText(d);
