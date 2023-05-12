@@ -24,7 +24,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_alignParentLeft="true"
-                android:src="@drawable/logo"/>
+                android:src="@drawable/logo"
+                android:paddingRight="5dp"/>
 
             <TextView
                 android:id="@+id/TxtProduct"
@@ -36,25 +37,14 @@
                 android:layout_toRightOf="@+id/ImgItem"/>
 
             <TextView
-                android:id="@+id/TxtDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:layout_below="@id/TxtProduct"
-                android:layout_toRightOf="@+id/ImgItem"/>
-
-            <TextView
                 android:id="@+id/TxtProductCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Category"
                 android:textColor="@color/black"
                 android:textSize="15dp"
-                android:layout_below="@id/TxtDesc"
+                android:layout_below="@id/TxtProduct"
                 android:layout_toRightOf="@+id/ImgItem"/>
-
 
             <TextView
                 android:id="@+id/TxtQuantity"
@@ -64,6 +54,16 @@
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:layout_below="@id/TxtProductCategory"
+                android:layout_toRightOf="@+id/ImgItem"/>
+
+            <TextView
+                android:id="@+id/TxtDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_below="@id/TxtQuantity"
                 android:layout_toRightOf="@+id/ImgItem"/>
 
         </RelativeLayout>
