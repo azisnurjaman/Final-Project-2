@@ -68,6 +68,5 @@ public class StaffActivity extends AddStaffActivity {
             startActivity(intent);
             Toast.makeText(getApplicationContext(), "Logout Successfully!", Toast.LENGTH_LONG).show();
         });
-
     }
 }
