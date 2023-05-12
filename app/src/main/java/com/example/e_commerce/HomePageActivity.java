@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class HomePageActivity extends AppCompatActivity {
 
     private Button btnFashion, btnElectronics, btnBooks, btnOthers;
+
+    private ImageView imgBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
