@@ -26,7 +26,6 @@ import java.util.ArrayList;
 
 public class FragmentProduct extends Fragment{
     private String TAG = FragmentProduct.class.getSimpleName();
-    private FloatingActionButton add;
     private RecyclerView viewItem;
     private ArrayList<Stock> listItem;
     private RecyclerView.LayoutManager layoutManager;
