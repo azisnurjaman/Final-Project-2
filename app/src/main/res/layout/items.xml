@@ -9,67 +9,100 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:layout_height="match_parent">
+
+
+            <View
+                android:layout_width="430dp"
+                android:layout_marginTop="60dp"
+                android:layout_height="3dp"
+                android:background="@color/blue"
+                />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/Category"
+                android:layout_marginLeft="70dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                />
+
+
+            <TextView
+                android:id="@+id/Category"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Category :"
+                android:layout_marginTop="13dp"
+                android:textSize="25dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/blue"/>
+
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="109dp"
+            android:padding="5dp"
+            android:layout_marginTop="70dp">
+
+
 
             <ImageView
                 android:id="@+id/ImgItem"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/logo"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="-3dp"
+                android:src="@drawable/logo" />
 
             <TextView
-                android:id="@+id/TxtNamaProduk"
+                android:id="@+id/TxtProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Produk"
-                android:textColor="@color/black"
-                android:textSize="15dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
                 android:layout_toRightOf="@+id/ImgItem"
-                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/TxtJenisProduk"
+                android:id="@+id/TxtProductCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Jenis Produk"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:layout_below="@id/TxtNamaProduk"
+                android:layout_below="@id/TxtProductName"
                 android:layout_toRightOf="@+id/ImgItem"
-                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+                android:text="Category"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/TxtHarga"
+                android:id="@+id/TxtProductPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Harga Produk"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:layout_below="@id/TxtJenisProduk"
+                android:layout_below="@id/TxtProductCategory"
                 android:layout_toRightOf="@+id/ImgItem"
-                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+                android:text="Price"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/TxtStok"
+                android:id="@+id/TxtStock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Stok Produk"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:layout_below="@id/TxtHarga"
+                android:layout_below="@id/TxtProductPrice"
                 android:layout_toRightOf="@+id/ImgItem"
-                android:layout_toLeftOf="@+id/ImgItemMenu"/>
+                android:text="Stock"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
-            <ImageView
-                android:id="@+id/ImgItemMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/ic_baseline_more_vert_24"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
 
         </RelativeLayout>
 
