@@ -39,7 +39,6 @@ public class FragmentBranda extends Fragment {
         itemsAdapter = new ItemsAdapter(stockList, getContext());
         recyclerView.setAdapter(itemsAdapter);
 
-        // Query Firebase to get product data
         databaseReference = FirebaseStockUtils.getRefrence(FirebaseStockUtils.ITEMS_PATH);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
