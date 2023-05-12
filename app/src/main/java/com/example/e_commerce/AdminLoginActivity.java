@@ -86,7 +86,9 @@ public class AdminLoginActivity extends AppCompatActivity {
         }
 
         progress.setVisibility(View.VISIBLE);
-        DatabaseReference adminsRef = FirebaseDatabase.getInstance("https://final-project-44dce-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("admin");
+        DatabaseReference adminsRef = FirebaseDatabase
+                .getInstance("https://final-project-44dce-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("admin");
         Query query = adminsRef.orderByChild("email").equalTo(email);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

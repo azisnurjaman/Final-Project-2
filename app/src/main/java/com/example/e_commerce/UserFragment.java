@@ -40,7 +40,7 @@ public class UserFragment extends Fragment {
     private void initView(View v) {
         logout = v.findViewById(R.id.submitLogout);
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("users");
+        reference = FirebaseDatabase.getInstance().getReference();
         userID = user.getUid();
 
         final TextView un = v.findViewById(R.id.namaUser);
