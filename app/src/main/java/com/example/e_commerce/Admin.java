@@ -2,14 +2,14 @@ package com.example.e_commerce;
 
 public class Admin {
 
-    public String email, password;
+    public String email, pass, userName;
 
     public Admin(){
 
     }
-    public Admin(String email, String password){
+    public Admin(String userName, String email, String pass){
+        this.userName = userName;
         this.email = email;
-        this.password = password;
+        this.pass = pass;
     }
-
 }

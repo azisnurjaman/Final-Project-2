@@ -27,17 +27,23 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.e_commerce.databinding.ActivityAdminLoginBinding;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AdminLoginActivity extends AppCompatActivity {
     private EditText etAdminEmail, etAdminPassword;
     private Button btnAdminLogin;
     private ProgressBar progress;
     private FirebaseAuth auth;
-    private DatabaseReference db;
+    private DatabaseReference dbR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +87,36 @@ public class AdminLoginActivity extends AppCompatActivity {
         }
 
         progress.setVisibility(View.VISIBLE);
+        /*dbR = FirebaseDatabase.getInstance("https://final-project-44dce-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("admin");
+        .orderByChild("pass").equalTo(pass).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            String getPass = snapshot.child(email).child("pass").getValue(String.class);
+
+                            if (getPass.equals(pass)){
+                                progress.setVisibility(View.GONE);
+                                startActivity(new Intent(AdminLoginActivity.this, AdminActivity.class));
+                                Toast.makeText(AdminLoginActivity.this, "Login successfully!",
+                                        Toast.LENGTH_LONG).show();
+                            } else {
+                                progress.setVisibility(View.GONE);
+                                Toast.makeText(AdminLoginActivity.this, "Login Failed, please check your credentials and try again!",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            progress.setVisibility(View.GONE);
+                            Toast.makeText(AdminLoginActivity.this, "Login Failed, please check your credentials and try again!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });*/
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

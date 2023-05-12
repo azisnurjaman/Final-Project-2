@@ -109,7 +109,7 @@ public class AddStaffActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
                                         progress.setVisibility(View.GONE);
-                                        onBackPressed();
+                                        finish();
                                         Toast.makeText(AddStaffActivity.this, "Staff has been registered successfully!",
                                                 Toast.LENGTH_LONG).show();
                                     } else {

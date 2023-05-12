@@ -100,7 +100,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
                                         progress.setVisibility(View.GONE);
-                                        onBackPressed();
+                                        finish();
                                         Toast.makeText(UserRegisterActivity.this, "User has been registered successfully!",
                                                 Toast.LENGTH_LONG).show();
                                     } else {

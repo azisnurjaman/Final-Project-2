@@ -65,7 +65,7 @@
 
 
             <TextView
-                android:id="@+id/TxtPrice"
+                android:id="@+id/TxtQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Price"
@@ -75,13 +75,13 @@
                 android:layout_toRightOf="@+id/ImgItem"/>
 
             <TextView
-                android:id="@+id/TxtStock"
+                android:id="@+id/TxtDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Stock"
                 android:textColor="@color/black"
                 android:textSize="15dp"
-                android:layout_below="@id/TxtPrice"
+                android:layout_below="@id/TxtQuantity"
                 android:layout_toRightOf="@+id/ImgItem"/>
 
 

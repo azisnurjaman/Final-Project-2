@@ -3,16 +3,20 @@ package com.example.e_commerce;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.FocusFinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,12 +24,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FragmentProduct extends Fragment implements ItemsAdapter.ItemListener{
-    private final String TAG = FragmentProduct.class.getSimpleName();
+public class FragmentProduct extends Fragment{
+    private String TAG = FragmentProduct.class.getSimpleName();
+    private FloatingActionButton add;
     private RecyclerView viewItem;
-    private ArrayList<ItemsActivity> listItem;
+    private ArrayList<Stock> listItem;
     private RecyclerView.LayoutManager layoutManager;
-    private ItemsAdapter adapter;
+    private RecyclerView.Adapter adapter;
 
     @Nullable
     @Override
@@ -40,12 +45,10 @@ public class FragmentProduct extends Fragment implements ItemsAdapter.ItemListen
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listItem = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    ItemsActivity item = snapshot.getValue(ItemsActivity.class);
-                    item.setKey(snapshot.getKey());
-                    listItem.add(item);
+                    Stock stock = snapshot.getValue(Stock.class);
+                    stock.setId(snapshot.getKey());
+                    listItem.add(stock);
                 }
-                adapter = new ItemsAdapter(listItem, getActivity(), FragmentProduct.this);
-                viewItem.setAdapter(adapter);
             }
 
             @Override
@@ -56,10 +59,7 @@ public class FragmentProduct extends Fragment implements ItemsAdapter.ItemListen
         return v;
     }
 
-    private void initView(View v) {
-    }
-
-    public void setViewItem(RecyclerView viewItem) {
-        this.viewItem = viewItem;
+    private void initView(View v){
+        viewItem = v.findViewById(R.id.ViewItem);
     }
 }

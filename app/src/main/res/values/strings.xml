@@ -18,7 +18,7 @@
         <item>Book</item>
         <item>Others</item>
     </string-array>
-    
+
     <string name="choose_image">Choose Image</string>
 
 </resources>
