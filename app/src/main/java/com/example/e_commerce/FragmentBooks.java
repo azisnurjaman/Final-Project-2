@@ -40,7 +40,7 @@ public class FragmentBooks extends Fragment {
         recyclerView.setAdapter(itemsAdapter);
 
         databaseReference = FirebaseStockUtils.getRefrence(FirebaseStockUtils.ITEMS_PATH);
-        databaseReference.orderByChild("category").equalTo("Books").addValueEventListener(new ValueEventListener() {
+        databaseReference.orderByChild("category").equalTo("Book").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 stockList.clear();
