@@ -19,6 +19,7 @@ public class UserActivity extends AppCompatActivity {
     private BottomNavigationView nav;
 
     private final FragmentBranda berandaFragment = new FragmentBranda();
+    private final FragmentFashion fragmentFashion = new FragmentFashion();
     private final UserFragment userFragment = new UserFragment();
 
     @Override
@@ -28,14 +29,14 @@ public class UserActivity extends AppCompatActivity {
 
         initView();
 
-        loadFragment(berandaFragment);
+        loadFragment(fragmentFashion);
 
         nav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
-                            case R.id.action_beranda : loadFragment(berandaFragment);
+                            case R.id.action_beranda : loadFragment(fragmentFashion);
                                 return true;
                             case R.id.action_profile : loadFragment(userFragment);
                                 return true;

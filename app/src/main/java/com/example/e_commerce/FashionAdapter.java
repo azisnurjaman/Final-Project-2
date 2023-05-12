@@ -19,11 +19,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> {
+public class FashionAdapter extends RecyclerView.Adapter<FashionAdapter.ViewHolder> {
     private ArrayList<Stock> listItem;
     private Context context;
 
-    public ItemsAdapter(ArrayList<Stock> listItem, Context context){
+    public FashionAdapter(ArrayList<Stock> listItem, Context context){
         this.listItem = listItem;
         this.context = context;
     }
@@ -31,7 +31,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.items, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fashion, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
