@@ -16,6 +16,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserLoginActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
@@ -67,12 +74,34 @@ public class UserLoginActivity extends AppCompatActivity {
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful() && task.getResult() != null && task.getResult().getUser() != null
-                        && task.getResult().getUser().isEmailVerified()) {
-                    progress.setVisibility(View.GONE);
-                    startActivity(new Intent(UserLoginActivity.this, UserActivity.class));
-                    Toast.makeText(UserLoginActivity.this, "Login successfully!",
-                            Toast.LENGTH_LONG).show();
+                if (task.isSuccessful() && task.getResult() != null && task.getResult().getUser() != null) {
+                    FirebaseUser user = task.getResult().getUser();
+                    if (user != null) {
+                        String uid = user.getUid();
+                        DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()) {
+                                    progress.setVisibility(View.GONE);
+                                    startActivity(new Intent(UserLoginActivity.this, UserActivity.class));
+                                    Toast.makeText(UserLoginActivity.this, "Login successfully!",
+                                            Toast.LENGTH_LONG).show();
+                                } else {
+                                    progress.setVisibility(View.GONE);
+                                    Toast.makeText(UserLoginActivity.this, "Login Failed, please check your credentials and try again!",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                progress.setVisibility(View.GONE);
+                                Toast.makeText(UserLoginActivity.this, "Login Failed, please check your credentials and try again!",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
                 } else {
                     progress.setVisibility(View.GONE);
                     Toast.makeText(UserLoginActivity.this, "Login Failed, please check your credentials and try again!",
