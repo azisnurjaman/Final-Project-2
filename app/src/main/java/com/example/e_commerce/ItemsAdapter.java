@@ -37,15 +37,15 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
     @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final String np = listItem.get(position).getName();
-        final String jp = listItem.get(position).getCategory();
-        final String h = listItem.get(position).getQuantity();
-        final String s = listItem.get(position).getDescription();
+        final String n = listItem.get(position).getName();
+        final String c = listItem.get(position).getCategory();
+        final String q = listItem.get(position).getQuantity();
+        final String d = listItem.get(position).getDescription();
 
-        holder.TxtProduct.setText(np);
-        holder.TxtProductCategory.setText(jp);
-        holder.TxtQuantity.setText(h);
-        holder.TxtDesc.setText(String.valueOf(s));
+        holder.TxtProduct.setText(n);
+        holder.TxtProductCategory.setText(c);
+        holder.TxtQuantity.setText(q);
+        holder.TxtDesc.setText(d);
     }
 
     @Override
@@ -66,7 +66,4 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             TxtDesc = itemView.findViewById(R.id.TxtDesc);
         }
     }
-/*    public interface ItemListener{
-        void delete(Stock stock, int position);
-    }*/
 }

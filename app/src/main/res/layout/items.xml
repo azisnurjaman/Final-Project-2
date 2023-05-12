@@ -2,10 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,7 +21,7 @@
         <Spinner
             android:id="@+id/spinner"
             android:layout_height="50dp"
-            android:layout_width="160dp"
+            android:layout_width="match_parent"
             android:layout_marginLeft="160dp"
             android:layout_marginTop="5dp" />
         <View
@@ -35,14 +33,13 @@
 
     </RelativeLayout>
 
-
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        android:elevation="10dp"
+        app:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
